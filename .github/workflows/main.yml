@@ -31,7 +31,9 @@ jobs:
 
       - name: echo PY_CODE from secrets to file
         run: |
-          printf "%s" "${{ secrets.PY_CODE }}" > py_code.py
+          cat << 'EOF' > py_code.py
+          ${{ secrets.PY_CODE }}
+          EOF
 
       - name: install psutil psycopg2-binary requests
         run: |
