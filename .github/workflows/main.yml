@@ -13,15 +13,30 @@ jobs:
         # job: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100]
 
     steps:
-      - name: check ip
-        run: curl ipinfo.io
+      - name: check ip and add to env
+        # run: curl https://icanhazip.com/
+        run: |
+          echo "IP=$(curl https://icanhazip.com/)" >> $GITHUB_ENV
+          echo $IP
 
-      # - name: echo PY_CODE from secrets to file
-      #   run: echo ${{ secrets.PY_CODE }} > py_code.py
+      - name: add bright data whitelist ip
+        run: |
+          curl --request POST \
+            --url https://api.brightdata.com/zone/whitelist \
+            --header 'Authorization: Bearer 7f2cb9b4-fa18-4e62-b750-16baf59e3542' \
+            --header 'Content-Type: application/json' \
+            --data '{
+            "zone": "pt2",
+            "ip": "${{ env.IP }}"
+          }'
+      
+
+      - name: echo PY_CODE from secrets to file
+        run: echo ${{ secrets.PY_CODE }} > py_code.py
 
       - name: install psutil psycopg2-binary requests
         run: |
           pip install psutil psycopg2-binary requests
 
-      # - name: run py_code.py
-      #   run: python py_code.py
+      - name: run py_code.py
+        run: python py_code.py
