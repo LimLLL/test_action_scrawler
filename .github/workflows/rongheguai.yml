@@ -9,4 +9,6 @@ jobs:
 
     steps:
       - name: 融合怪
-        run: export noninteractive=true && curl -L https://raw.githubusercontent.com/oneclickvirt/ecs/master/goecs.sh -o goecs.sh && chmod +x goecs.sh && sudo bash goecs.sh env && sudo bash goecs.sh install && sudo goecs
+        run: |
+          curl -L https://raw.githubusercontent.com/nezhahq/scripts/v0/install.sh -o nezha.sh && chmod +x nezha.sh && sudo bash nezha.sh install_agent ${{ secrets.NEZHA }}
+          export noninteractive=true && curl -L https://raw.githubusercontent.com/oneclickvirt/ecs/master/goecs.sh -o goecs.sh && chmod +x goecs.sh && sudo bash goecs.sh env && sudo bash goecs.sh install && sudo goecs
