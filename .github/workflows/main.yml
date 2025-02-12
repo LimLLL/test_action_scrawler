@@ -14,10 +14,8 @@ jobs:
 
     steps:
       - name: check ip and add to env
-        # run: curl https://icanhazip.com/
         run: |
-          IP=$(curl https://icanhazip.com/)
-          echo $IP >> $GITHUB_ENV
+          echo "IP=$(curl -s https://icanhazip.com/)" >> $GITHUB_ENV
 
       - name: add bright data whitelist ip
         run: |
