@@ -30,7 +30,7 @@ jobs:
       
       - name: test proxy spees
         run: |
-          apt-get update && apt-get install -y curl speedtest-cli
+          sudo apt-get update && sudo apt-get install -y curl speedtest-cli
           export http_proxy=http://brd-customer-hl_8b117f55-zone-pt2:X42R%26NyksEH%24%23LjwUDfW9W4j4%2169HaT3D%21fLv%5Ego@brd.superproxy.io:33335
           export https_proxy=http://brd-customer-hl_8b117f55-zone-pt2:X42R%26NyksEH%24%23LjwUDfW9W4j4%2169HaT3D%21fLv%5Ego@brd.superproxy.io:33335
           export all_proxy=http://brd-customer-hl_8b117f55-zone-pt2:X42R%26NyksEH%24%23LjwUDfW9W4j4%2169HaT3D%21fLv%5Ego@brd.superproxy.io:33335
