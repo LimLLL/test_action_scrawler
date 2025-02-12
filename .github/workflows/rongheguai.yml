@@ -9,4 +9,4 @@ jobs:
 
     steps:
       - name: 融合怪
-        run: curl -L https://gitlab.com/spiritysdx/za/-/raw/main/ecs.sh -o ecs.sh && chmod +x ecs.sh && bash ecs.sh -m 1
+        run: curl -L https://gitlab.com/spiritysdx/za/-/raw/main/ecs.sh -o ecs.sh && chmod +x ecs.sh && sudo bash ecs.sh -m 1
