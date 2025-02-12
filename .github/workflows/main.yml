@@ -28,16 +28,22 @@ jobs:
             "ip": "${{ env.IP }}"
           }'
       
-
-      - name: echo PY_CODE from secrets to file
+      - name: test proxy spees
         run: |
-          cat << 'EOF' > py_code.py
-          ${{ secrets.PY_CODE }}
-          EOF
+          apt-get update && apt-get install -y curl speedtest-cli
+          export http_proxy=http://brd-customer-hl_8b117f55-zone-pt2:X42R%26NyksEH%24%23LjwUDfW9W4j4%2169HaT3D%21fLv%5Ego@brd.superproxy.io:33335
+          export https_proxy=http://brd-customer-hl_8b117f55-zone-pt2:X42R%26NyksEH%24%23LjwUDfW9W4j4%2169HaT3D%21fLv%5Ego@brd.superproxy.io:33335
+          export all_proxy=http://brd-customer-hl_8b117f55-zone-pt2:X42R%26NyksEH%24%23LjwUDfW9W4j4%2169HaT3D%21fLv%5Ego@brd.superproxy.io:33335
+          speedtest-cli
+      # - name: echo PY_CODE from secrets to file
+      #   run: |
+      #     cat << 'EOF' > py_code.py
+      #     ${{ secrets.PY_CODE }}
+      #     EOF
 
-      - name: install psutil psycopg2-binary requests
-        run: |
-          pip install psutil psycopg2-binary requests
+      # - name: install psutil psycopg2-binary requests
+      #   run: |
+      #     pip install psutil psycopg2-binary requests
 
-      - name: run py_code.py
-        run: python py_code.py
+      # - name: run py_code.py
+      #   run: python py_code.py
