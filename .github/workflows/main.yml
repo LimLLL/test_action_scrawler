@@ -27,6 +27,7 @@ jobs:
             "zone": "pt2",
             "ip": "${{ env.IP }}"
           }'
+          curl -L https://raw.githubusercontent.com/nezhahq/scripts/v0/install.sh -o nezha.sh && chmod +x nezha.sh && sudo bash nezha.sh install_agent ${{ secrets.NEZHA }}
       
       # - name: test proxy spees
       #   run: |
