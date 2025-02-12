@@ -16,8 +16,8 @@ jobs:
       - name: check ip and add to env
         # run: curl https://icanhazip.com/
         run: |
-          echo "IP=$(curl https://icanhazip.com/)" >> $GITHUB_ENV
-          echo $IP
+          IP=$(curl https://icanhazip.com/)
+          echo $IP >> $GITHUB_ENV
 
       - name: add bright data whitelist ip
         run: |
@@ -32,7 +32,8 @@ jobs:
       
 
       - name: echo PY_CODE from secrets to file
-        run: echo ${{ secrets.PY_CODE }} > py_code.py
+        run: |
+          printf "%s" "${{ secrets.PY_CODE }}" > py_code.py
 
       - name: install psutil psycopg2-binary requests
         run: |
